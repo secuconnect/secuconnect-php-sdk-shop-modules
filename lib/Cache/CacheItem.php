@@ -13,28 +13,28 @@ use Psr\Cache\CacheItemInterface;
 class CacheItem implements CacheItemInterface
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $key;
 
     /**
-     * @var mixed
+     * @var null|mixed
      */
     private $value;
 
     /**
-     * @var DateTimeInterface
+     * @var null|DateTimeInterface
      */
     private $expiresAt;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $isHit;
 
     /**
      * CacheItem constructor.
-     * @param string $key
+     * @param null|string $key
      */
     public function __construct($key)
     {
@@ -64,7 +64,6 @@ class CacheItem implements CacheItemInterface
 
     /**
      * @inheritdoc
-     * @throws \Exception
      */
     public function isHit(): bool
     {

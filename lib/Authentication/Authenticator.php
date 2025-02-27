@@ -17,7 +17,7 @@ class Authenticator
 {
     /**
      * Some buffer for the expiration time
-     * @var string
+     * @var int
      */
     const EXPECTED_LENGTH_OF_REQUEST = 10;
     const REFRESH_TOKEN_EXPIRE_TIME = 15768000;
@@ -25,17 +25,17 @@ class Authenticator
     const ACCESS_TOKEN = 'accessToken_';
 
     /**
-     * @var CacheItemPoolInterface
+     * @var null|CacheItemPoolInterface
      */
     private static $cache;
 
     /**
-     * @var ApiClient
+     * @var null|ApiClient
      */
     private static $apiClient;
 
     /**
-     * @var AuthenticationCredentials
+     * @var null|AuthenticationCredentials
      */
     private static $credentials;
 
@@ -50,6 +50,7 @@ class Authenticator
 
     /**
      * @param CacheItemPoolInterface $cache
+     * @return void
      */
     public static function setCache(CacheItemPoolInterface $cache)
     {
@@ -58,6 +59,7 @@ class Authenticator
 
     /**
      * @param ApiClient $apiClient
+     * @return void
      */
     public static function setApiClient(ApiClient $apiClient)
     {
@@ -149,10 +151,10 @@ class Authenticator
         if (self::$credentials) {
             try {
                 $key = self::ACCESS_TOKEN . self::$credentials->getUniqueKey();
-                if (self::$cache->getItem($key)) {
+                if (self::$cache->getItem($key)->isHit()) {
                     self::$cache->deleteItem($key);
                 }
-                
+
                 return self::startAuthenticationProcess(self::$credentials);
             } catch (InvalidArgumentException $e) {
                 // ignore
@@ -199,6 +201,7 @@ class Authenticator
      * Init static values (with default values if needed)
      *
      * @param AuthenticationCredentials $authenticationCredentials
+     * @return void
      */
     private static function init(AuthenticationCredentials $authenticationCredentials)
     {
@@ -309,7 +312,7 @@ class Authenticator
      * Function to get access token from API.
      *
      * @param AuthenticationCredentials $authenticationCredentials
-     * @return object
+     * @return null|object
      * @throws ApiException
      */
     private static function getTokenFromApi(AuthenticationCredentials $authenticationCredentials)
@@ -336,6 +339,7 @@ class Authenticator
      *
      * @param object $newToken
      * @param string $authId
+     * @return void
      */
     private static function storeNewTokenInCache($newToken, $authId)
     {
@@ -402,6 +406,7 @@ class Authenticator
      * @param CacheItemInterface $cacheItem
      * @param string $token
      * @param int $expiresIn
+     * @return void
      */
     private static function saveTokenToCache(CacheItemInterface $cacheItem, $token, $expiresIn)
     {

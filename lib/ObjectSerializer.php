@@ -29,8 +29,6 @@ class ObjectSerializer
         ['interface' => '\Secuconnect\Client\Model\OneOfPaymentContainersDTOModelPrivate', 'class' => '\Secuconnect\Client\Model\CreditCardDescriptor'],
         ['interface' => '\Secuconnect\Client\Model\OneOfPaymentContainersDTOModelPrivate', 'class' => '\Secuconnect\Client\Model\GooglePayDescriptor'],
         ['interface' => '\Secuconnect\Client\Model\OneOfPaymentContainersDTOModelPrivate', 'class' => '\Secuconnect\Client\Model\PayPalDescriptor'],
-        ['interface' => '\Secuconnect\Client\Model\PrepaidMappingZvtResponse', 'class' => '\Secuconnect\Client\Model\PrepaidMappingZvt'],
-        ['interface' => '\Secuconnect\Client\Model\PrepaidMappingZvtResponse', 'class' => '\Secuconnect\Client\Model\ResultBoolean'],
         ['interface' => '\Secuconnect\Client\Model\OneOfSmartTransactionsDeliveryOptionsModel', 'class' => '\Secuconnect\Client\Model\SmartTransactionsCollectionModel'],
         ['interface' => '\Secuconnect\Client\Model\OneOfSmartTransactionsDeliveryOptionsModel', 'class' => '\Secuconnect\Client\Model\SmartTransactionsShippingModel'],
     ];
@@ -41,7 +39,7 @@ class ObjectSerializer
      * @param mixed  $data   the data to serialize
      * @param string $format the format of the Swagger type of the data
      *
-     * @return string|object serialized form of $data
+     * @return mixed serialized form of $data
      */
     public static function sanitizeForSerialization($data, $format = null)
     {
@@ -113,7 +111,7 @@ class ObjectSerializer
      * If it's a string, pass through unchanged. It will be url-encoded
      * later.
      *
-     * @param string[]|string|\DateTime $object an object to be serialized to a string
+     * @param mixed $object an object to be serialized to a string
      * @param string|null $format the format of the parameter
      *
      * @return string the serialized object
@@ -182,10 +180,10 @@ class ObjectSerializer
     /**
      * Serialize an array to a string.
      *
-     * @param array  $collection                 collection to serialize to a string
-     * @param string $collectionFormat           the format use for serialization (csv,
+     * @param string[] $collection collection to serialize to a string
+     * @param string $collectionFormat the format use for serialization (csv,
      * ssv, tsv, pipes, multi)
-     * @param bool   $allowCollectionFormatMulti allow collection format to be a multidimensional array
+     * @param bool $allowCollectionFormatMulti allow collection format to be a multidimensional array
      *
      * @return string
      */
@@ -220,7 +218,7 @@ class ObjectSerializer
      * @param string   $class         class name is passed as a string
      * @param string[] $httpHeaders   HTTP headers
      *
-     * @return object|array|null an single or an array of $class instances
+     * @return mixed an single or an array of $class instances
      * @throws \Exception
      */
     public static function deserialize($data, $class, $httpHeaders = null)
@@ -293,32 +291,24 @@ class ObjectSerializer
             return $data;
         } else {
             if (trim($class, '\\') === OneOfPaymentContainersDTOModelPrivate::class) {
-                $subclass = BankAccountDescriptor::class;
+                $class = BankAccountDescriptor::class;
                 if (isset($data->girocode_url)) {
-                    $subclass = PaymentInstructions::class;
+                    $class = PaymentInstructions::class;
                 } elseif (isset($data->pan)) {
-                    $subclass = CreditCardDescriptor::class;
+                    $class = CreditCardDescriptor::class;
                 } elseif (isset($data->header)) {
-                    $subclass = ApplePayDescriptor::class;
+                    $class = ApplePayDescriptor::class;
                 } elseif (isset($data->signedMessage)) {
-                    $subclass = GooglePayDescriptor::class;
+                    $class = GooglePayDescriptor::class;
                 } elseif (isset($data->payer_id)) {
-                    $subclass = PayPalDescriptor::class;
-                }
-
-                if (is_subclass_of($subclass, $class)) {
-                    $class = $subclass;
+                    $class = PayPalDescriptor::class;
                 }
             } elseif (trim($class, '\\') === OneOfSmartTransactionsDeliveryOptionsModel::class) {
-                $subclass = SmartTransactionsShippingModel::class;
+                $class = SmartTransactionsShippingModel::class;
                 if ($data->type === 'shipping') {
-                    $subclass = SmartTransactionsShippingModel::class;
+                    $class = SmartTransactionsShippingModel::class;
                 } elseif ($data->type === 'collection') {
-                    $subclass = SmartTransactionsCollectionModel::class;
-                }
-
-                if ($subclass && is_subclass_of($subclass, $class)) {
-                    $class = $subclass;
+                    $class = SmartTransactionsCollectionModel::class;
                 }
             } else {
                 // If a discriminator is defined and points to a valid subclass, use it.
@@ -343,7 +333,6 @@ class ObjectSerializer
                 }
 
                 if ($class_list) {
-                    $subclass = null;
                     if (count($class_list) > 1) {
                         $previous_matches = 0;
                         foreach ($class_list as $current_subclass) {
@@ -354,15 +343,11 @@ class ObjectSerializer
 
                             if ($current_matches > $previous_matches) {
                                 $previous_matches = $current_matches;
-                                $subclass = $current_subclass;
+                                $class = $current_subclass;
                             }
                         }
                     } else {
-                        $subclass = reset($class_list);
-                    }
-
-                    if ($subclass !== null && is_subclass_of($subclass, $class)) {
-                        $class = $subclass;
+                        $class = reset($class_list);
                     }
                 }
             }
@@ -375,9 +360,8 @@ class ObjectSerializer
                     continue;
                 }
 
-                $propertyValue = $data->{$instance::attributeMap()[$property]};
-                if (isset($propertyValue)) {
-                    $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
+                if (isset($data->{$instance::attributeMap()[$property]})) {
+                    $instance->$propertySetter(self::deserialize($data->{$instance::attributeMap()[$property]}, $type, null));
                 }
             }
             return $instance;

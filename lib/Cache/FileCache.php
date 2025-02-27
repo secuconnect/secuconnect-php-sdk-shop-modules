@@ -13,7 +13,7 @@ class FileCache implements CacheItemPoolInterface
     const DEFAULT_FOLDER = 'tmp';
 
     /**
-     * @var array
+     * @var CacheItemInterface[]
      */
     private $cacheItems = [];
 
@@ -24,7 +24,7 @@ class FileCache implements CacheItemPoolInterface
 
     /**
      * FileCache constructor.
-     * @param string $dir
+     * @param null|string $dir
      */
     public function __construct($dir = null)
     {
@@ -35,7 +35,7 @@ class FileCache implements CacheItemPoolInterface
 
             if (!file_exists($this->dir)) {
                 if (!mkdir($this->dir)) {
-                    return null;
+                    return;
                 }
             }
         }
@@ -66,6 +66,7 @@ class FileCache implements CacheItemPoolInterface
 
     /**
      * @inheritdoc
+     * @return CacheItemInterface[]
      */
     public function getItems(array $keys = []): iterable
     {

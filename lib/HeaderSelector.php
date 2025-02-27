@@ -42,7 +42,7 @@ class HeaderSelector
     /**
      * @param string[] $accept
      * @param string[] $contentTypes
-     * @return array
+     * @return string[]
      */
     public function selectHeaders($accept, $contentTypes)
     {
@@ -59,7 +59,7 @@ class HeaderSelector
 
     /**
      * @param string[] $accept
-     * @return array
+     * @return string[]
      */
     public function selectHeadersForMultipart($accept)
     {
@@ -74,7 +74,7 @@ class HeaderSelector
      *
      * @param string[] $accept Array of header
      *
-     * @return string Accept (e.g. application/json)
+     * @return null|string Accept (e.g. application/json)
      */
     private function selectAcceptHeader($accept)
     {

@@ -12,8 +12,8 @@ use Secuconnect\Client\Printer\Printer;
  */
 class Configuration
 {
-    const DEFAULT_HOST = 'connect-testing.secupay-ag.de'; // For live use: connect.secucard.com
-    const SDK_VERSION = '2.55.0';
+    const DEFAULT_HOST = 'connect-testing.secuconnect.com'; // For live use: connect.secucard.com
+    const SDK_VERSION = '0.1.0';
 
     const BASE_URL = 'https://' . self::DEFAULT_HOST . '/';
     const API_URL = self::BASE_URL . 'api/v2';
@@ -22,20 +22,6 @@ class Configuration
      * @var self|null
      */
     private static $defaultConfiguration;
-
-    /**
-     * basic stomp destination
-     *
-     * @var string
-     */
-    protected $replyToStomp = '/temp-queue/main';
-
-    /**
-     * basic stomp destination
-     *
-     * @var string
-     */
-    protected $basicStompDestination = '/exchange/connect.api/';
 
     /**
      * Access token for OAuth
@@ -47,7 +33,7 @@ class Configuration
     /**
      * The default header(s)
      *
-     * @var array
+     * @var string[]
      */
     protected $defaultHeaders = [];
 
@@ -66,30 +52,16 @@ class Configuration
     protected $authHost = self::BASE_URL;
 
     /**
-     * The stomp host
-     *
-     * @var string
-     */
-    protected $stompHost = 'ssl://' . self::DEFAULT_HOST;
-
-    /**
-     * The stomp port
-     *
-     * @var string
-     */
-    protected $stompPort = '61614';
-
-    /**
      * Timeout (second) of the HTTP request, by default set to 0, no timeout
      *
-     * @var string
+     * @var int
      */
     protected $curlTimeout = 0;
 
     /**
      * Timeout (second) of the HTTP connection, by default set to 0, no timeout
      *
-     * @var string
+     * @var int
      */
     protected $curlConnectTimeout = 0;
 
@@ -209,6 +181,7 @@ class Configuration
 
     /**
      * @param Printer $printer
+     * @return void
      */
     public function setPrinter(Printer $printer)
     {
@@ -225,33 +198,11 @@ class Configuration
 
     /**
      * @param CacheItemPoolInterface $cache
+     * @return void
      */
     public function setCache(CacheItemPoolInterface $cache)
     {
         $this->cache = $cache;
-    }
-
-    /**
-     * Sets the basic Stomp Destination
-     *
-     * @param string basicStompDestination
-     *
-     * @return $this
-     */
-    public function setBasicStompDestination($basicStompDestination)
-    {
-        $this->basicStompDestination = $basicStompDestination;
-        return $this;
-    }
-
-    /**
-     * Gets the basic Stomp Destination
-     *
-     * @return string basicStompDestination
-     */
-    public function getBasicStompDestination()
-    {
-        return $this->basicStompDestination;
     }
 
     /**
@@ -268,29 +219,6 @@ class Configuration
     }
 
     /**
-     * Gets the basic Stomp Destination
-     *
-     * @return string basicStompDestination
-     */
-    public function getReplyToStomp()
-    {
-        return $this->replyToStomp;
-    }
-
-    /**
-     * Sets ReplyToStomp parameter
-     *
-     * @param string $replyToStomp
-     *
-     * @return $this
-     */
-    public function setReplyToStomp($replyToStomp)
-    {
-        $this->replyToStomp = $replyToStomp;
-        return $this;
-    }
-
-    /**
      * Gets the access token for OAuth
      *
      * @return string Access token for OAuth
@@ -303,8 +231,8 @@ class Configuration
     /**
      * Adds a default header
      *
-     * @param string $headerName  header name (e.g. Token)
-     * @param string $headerValue header value (e.g. 1z8wp3)
+     * @param null|string $headerName  header name (e.g. Token)
+     * @param null|string $headerValue header value (e.g. 1z8wp3)
      *
      * @throws \InvalidArgumentException
      * @return $this
@@ -322,7 +250,7 @@ class Configuration
     /**
      * Gets the default header
      *
-     * @return array An array of default header(s)
+     * @return string[] An array of default header(s)
      */
     public function getDefaultHeaders()
     {
@@ -368,7 +296,7 @@ class Configuration
     /**
      * Sets the authentication host
      *
-     * @param $host
+     * @param string $host
      * @return $this
      */
     public function setAuthHost($host)
@@ -387,55 +315,10 @@ class Configuration
         return $this->authHost;
     }
 
-     /**
-     * Sets the stomp port
-     *
-     * @param string stompPort
-     *
-     * @return $this
-     */
-    public function setStompPort($port)
-    {
-        $this->stompPort = $port;
-        return $this;
-    }
-
-    /**
-     * Gets the stomp port
-     *
-     * @return string stompPort
-     */
-    public function getStompPort()
-    {
-        return $this->stompPort;
-    }
-
-    /**
-     * Sets the stomp host
-     *
-     * @param string authHost
-     * @return $this
-     */
-    public function setStompHost($host)
-    {
-        $this->stompHost = $host;
-        return $this;
-    }
-
-    /**
-     * Gets the stomp host
-     *
-     * @return string Host
-     */
-    public function getStompHost()
-    {
-        return $this->stompHost;
-    }
-
     /**
      * Sets the user agent of the api client
      *
-     * @param string $userAgent the user agent of the api client
+     * @param null|string $userAgent the user agent of the api client
      *
      * @throws \InvalidArgumentException
      * @return $this
@@ -463,7 +346,7 @@ class Configuration
     /**
      * Sets the HTTP timeout value
      *
-     * @param integer $seconds Number of seconds before timing out [set to 0 for no timeout]
+     * @param null|int $seconds Number of seconds before timing out [set to 0 for no timeout]
      *
      * @throws \InvalidArgumentException
      * @return $this
@@ -481,7 +364,7 @@ class Configuration
     /**
      * Gets the HTTP timeout value
      *
-     * @return string HTTP timeout value
+     * @return int HTTP timeout value
      */
     public function getCurlTimeout()
     {
@@ -491,7 +374,7 @@ class Configuration
     /**
      * Sets the HTTP connect timeout value
      *
-     * @param integer $seconds Number of seconds before connection times out [set to 0 for no timeout]
+     * @param null|int $seconds Number of seconds before connection times out [set to 0 for no timeout]
      *
      * @throws \InvalidArgumentException
      * @return $this
@@ -521,7 +404,7 @@ class Configuration
     /**
      * Gets the HTTP connect timeout value
      *
-     * @return string HTTP connect timeout value
+     * @return int HTTP connect timeout value
      */
     public function getCurlConnectTimeout()
     {

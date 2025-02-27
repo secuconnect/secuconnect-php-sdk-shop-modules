@@ -8,14 +8,14 @@ namespace Secuconnect\Client\Authentication;
 abstract class AuthenticationCredentials
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected $credentials;
 
     /**
      * Getter for credentials field.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getCredentials()
     {
@@ -25,7 +25,8 @@ abstract class AuthenticationCredentials
     /**
      * Setter for credentials field.
      *
-     * @param array $credentials
+     * @param array<string, mixed> $credentials
+     * @return void
      */
     public function setCredentials($credentials)
     {

@@ -12,12 +12,19 @@ namespace Secuconnect\Client;
  */
 class ApiClient
 {
+    /** @var string */
     public static $PATCH = "PATCH";
+    /** @var string */
     public static $POST = "POST";
+    /** @var string */
     public static $GET = "GET";
+    /** @var string */
     public static $HEAD = "HEAD";
+    /** @var string */
     public static $OPTIONS = "OPTIONS";
+    /** @var string */
     public static $PUT = "PUT";
+    /** @var string */
     public static $DELETE = "DELETE";
 
     /**
@@ -74,9 +81,9 @@ class ApiClient
      *
      * @param string $resourcePath path to method endpoint
      * @param string $method method to call
-     * @param array $queryParams parameters to be place in query URL
-     * @param array $postData parameters to be placed in POST body
-     * @param array $headerParams parameters to be place in request header
+     * @param string[] $queryParams parameters to be place in query URL
+     * @param mixed $postData parameters to be placed in POST body
+     * @param string[] $headerParams parameters to be place in request header
      * @param string $responseType expected response type of the endpoint
      * @param string $endpointPath path to method endpoint before expanding parameters
      *
@@ -123,7 +130,7 @@ class ApiClient
 
         // disable SSL verification, if needed
         if ($this->config->getSSLVerification() === false) {
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }
 
@@ -180,16 +187,16 @@ class ApiClient
         if ($this->config->getDebug()) {
             error_log("[DEBUG] HTTP Request body  ~BEGIN~" . PHP_EOL . print_r($postData, true) . PHP_EOL . "~END~" . PHP_EOL, 3, $this->config->getDebugFile());
 
-            curl_setopt($curl, CURLOPT_VERBOSE, 1);
+            curl_setopt($curl, CURLOPT_VERBOSE, true);
             if (is_file($this->config->getDebugFile())) {
                 curl_setopt($curl, CURLOPT_STDERR, fopen($this->config->getDebugFile(), 'a'));
             }
         } else {
-            curl_setopt($curl, CURLOPT_VERBOSE, 0);
+            curl_setopt($curl, CURLOPT_VERBOSE, false);
         }
 
         // obtain the HTTP response headers
-        curl_setopt($curl, CURLOPT_HEADER, 1);
+        curl_setopt($curl, CURLOPT_HEADER, true);
 
         // Make the request
         $response = curl_exec($curl);
@@ -249,7 +256,7 @@ class ApiClient
      *
      * @param string[] $accept Array of header
      *
-     * @return string Accept (e.g. application/json)
+     * @return null|string Accept (e.g. application/json)
      */
     public function selectHeaderAccept($accept)
     {
@@ -312,7 +319,6 @@ class ApiClient
                 } elseif (!$key) {
                     $headers[0] = trim($h[0]);
                 }
-                trim($h[0]);
             }
         }
 

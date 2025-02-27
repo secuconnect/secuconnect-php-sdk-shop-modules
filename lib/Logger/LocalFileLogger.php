@@ -15,66 +15,106 @@ class LocalFileLogger implements LoggerInterface
      * The name of a directory which will contain
      * all logs directories and files.
      *
-     * @var string
+     * @var string $dirName
      */
     private $dirName;
 
+    /**
+     * @param string $dirName
+     */
     public function __construct($dirName = 'logs/')
     {
         $this->dirName = $dirName;
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function emergency($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"emergency.log");
+        $this->saveMessageToLogFile($message, "emergency.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function alert($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"alert.log");
+        $this->saveMessageToLogFile($message, "alert.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function critical($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"critical.log");
+        $this->saveMessageToLogFile($message, "critical.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function error($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"error.log");
+        $this->saveMessageToLogFile($message, "error.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function warning($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"warning.log");
+        $this->saveMessageToLogFile($message, "warning.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function notice($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"notice.log");
+        $this->saveMessageToLogFile($message, "notice.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function info($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"info.log");
+        $this->saveMessageToLogFile($message, "info.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function debug($message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"debug.log");
+        $this->saveMessageToLogFile($message, "debug.log");
     }
 
+    /**
+     * @param string $message
+     * @param array<string,string> $context
+     */
     public function log($level, $message, array $context = []): void
     {
-        $this->saveMessageToLogFile($message,"log.log");
+        $this->saveMessageToLogFile($message, "log.log");
     }
 
     /**
      * Function for saving a message in a file.
      *
-     * @param $message
-     * @param $fileName
+     * @param string $message
+     * @param string $fileName
      * @throws Exception
+     * @return void
      */
     private function saveMessageToLogFile($message, $fileName)
     {
@@ -104,9 +144,10 @@ class LocalFileLogger implements LoggerInterface
      * Function for checking if directory exists and
      * if doesn't exist it create new directory.
      *
-     * @param $dirName
-     * @param $errorMessage
+     * @param string $dirName
+     * @param string $errorMessage
      * @throws Exception
+     * @return void
      */
     private function checkDirectory($dirName, $errorMessage)
     {
@@ -121,7 +162,7 @@ class LocalFileLogger implements LoggerInterface
      * Function for preparing full log message.
      * It adds the current date and EOL.
      *
-     * @param $message
+     * @param string $message
      * @return string
      */
     private function prepareFullLogMessage($message)
@@ -130,7 +171,7 @@ class LocalFileLogger implements LoggerInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDirName()
     {
@@ -138,7 +179,8 @@ class LocalFileLogger implements LoggerInterface
     }
 
     /**
-     * @param $dirName
+     * @param string $dirName
+     * @return void
      */
     public function setDirName($dirName)
     {

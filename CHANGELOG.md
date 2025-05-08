@@ -18,6 +18,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.2.0] - 2025-05-08
+[0.2.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.1.1...0.2.0
+
+### Changed
+- `Model.SmartTransactionsDTO`
+- `Model.SmartTransactionsProductModel`
+
+### Removed
+- `Model.SmartTemplatesElementModel`
+
+
 ## [0.1.0] - 2025-02-27
 [0.1.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/...0.1.0
 

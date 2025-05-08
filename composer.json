@@ -1,6 +1,6 @@
 {
     "name": "secuconnect/secuconnect-php-sdk-shop-modules",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "homepage": "https://github.com/secuconnect/secuconnect-php-sdk-shop-modules",
     "license": "Apache-2.0",
     "authors": [

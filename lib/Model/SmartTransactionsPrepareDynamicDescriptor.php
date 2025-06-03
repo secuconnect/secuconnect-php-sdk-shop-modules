@@ -2,13 +2,16 @@
 
 namespace Secuconnect\Client\Model;
 
+use \ArrayAccess;
+
 /**
- * SmartTransactionsContainer
+ * SmartTransactionsPrepareDynamicDescriptor
  *
- * @description Payment instrument
+ * @description Dynamic Descriptor to allow the cardholder to recognize the business name and city on their card or bank statement.
  * @package  Secuconnect\Client
+ * @implements ArrayAccess<string, mixed>
  */
-class SmartTransactionsContainer extends ProductInstanceUID
+class SmartTransactionsPrepareDynamicDescriptor implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -16,15 +19,15 @@ class SmartTransactionsContainer extends ProductInstanceUID
      * The original name of the model.
      * @var string
      */
-    protected static $swaggerModelName = 'SmartTransactionsContainer';
+    protected static $swaggerModelName = 'SmartTransactionsPrepareDynamicDescriptor';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'type' => 'string',
-        'token_status' => '\Secuconnect\Client\Model\PaymentContainerTokenStatus'
+        'merchant_name' => 'string',
+        'merchant_city' => 'string'
     ];
 
     /**
@@ -32,8 +35,8 @@ class SmartTransactionsContainer extends ProductInstanceUID
      * @var array<string, mixed>
      */
     protected static $swaggerFormats = [
-        'type' => null,
-        'token_status' => null
+        'merchant_name' => null,
+        'merchant_city' => null
     ];
 
     /**
@@ -41,7 +44,7 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes + parent::swaggerTypes();
+        return self::$swaggerTypes;
     }
 
     /**
@@ -49,7 +52,7 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats + parent::swaggerFormats();
+        return self::$swaggerFormats;
     }
 
     /**
@@ -57,8 +60,8 @@ class SmartTransactionsContainer extends ProductInstanceUID
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'token_status' => 'token_status'
+        'merchant_name' => 'merchant_name',
+        'merchant_city' => 'merchant_city'
     ];
 
     /**
@@ -66,8 +69,8 @@ class SmartTransactionsContainer extends ProductInstanceUID
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'token_status' => 'setTokenStatus'
+        'merchant_name' => 'setMerchantName',
+        'merchant_city' => 'setMerchantCity'
     ];
 
     /**
@@ -75,8 +78,8 @@ class SmartTransactionsContainer extends ProductInstanceUID
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'token_status' => 'getTokenStatus'
+        'merchant_name' => 'getMerchantName',
+        'merchant_city' => 'getMerchantCity'
     ];
 
     /**
@@ -84,7 +87,7 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -92,7 +95,7 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -100,8 +103,14 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
+
+    /**
+     * Associative array for storing property values
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -109,10 +118,8 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public function __construct(array $data = null)
     {
-        parent::__construct($data);
-
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['token_status'] = isset($data['token_status']) ? $data['token_status'] : null;
+        $this->container['merchant_name'] = isset($data['merchant_name']) ? $data['merchant_name'] : null;
+        $this->container['merchant_city'] = isset($data['merchant_city']) ? $data['merchant_city'] : null;
     }
 
     /**
@@ -122,7 +129,7 @@ class SmartTransactionsContainer extends ProductInstanceUID
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = parent::listInvalidProperties();
+        $invalid_properties = [];
 
         return $invalid_properties;
     }
@@ -140,43 +147,43 @@ class SmartTransactionsContainer extends ProductInstanceUID
 
 
     /**
-     * Gets type
+     * Gets merchant_name
      * @return string
      */
-    public function getType()
+    public function getMerchantName()
     {
-        return $this->container['type'];
+        return $this->container['merchant_name'];
     }
 
     /**
-     * Sets type
-     * @param string $type The container type
+     * Sets merchant_name
+     * @param string $merchant_name Merchant Name to recognition on card or bank statement.  _Note: [1 - 22] characters_
      * @return $this
      */
-    public function setType($type)
+    public function setMerchantName($merchant_name)
     {
-        $this->container['type'] = $type;
+        $this->container['merchant_name'] = $merchant_name;
 
         return $this;
     }
 
     /**
-     * Gets token_status
-     * @return \Secuconnect\Client\Model\PaymentContainerTokenStatus
+     * Gets merchant_city
+     * @return string
      */
-    public function getTokenStatus()
+    public function getMerchantCity()
     {
-        return $this->container['token_status'];
+        return $this->container['merchant_city'];
     }
 
     /**
-     * Sets token_status
-     * @param \Secuconnect\Client\Model\PaymentContainerTokenStatus $token_status token_status
+     * Sets merchant_city
+     * @param string $merchant_city Merchant City to recognition on card or bank statement.  _Note: [1 - 13] characters_
      * @return $this
      */
-    public function setTokenStatus($token_status)
+    public function setMerchantCity($merchant_city)
     {
-        $this->container['token_status'] = $token_status;
+        $this->container['merchant_city'] = $merchant_city;
 
         return $this;
     }

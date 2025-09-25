@@ -18,6 +18,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.4.0] - 2025-09-25
+[0.4.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.3.0...0.4.0
+
+### Changed
+- `Model.LoyaltyMerchantcardsProductModel`
+- `Model.PaymentContainersDTO`
+- `Model.SmartTransactionPaymentContainerDTO`
+
+
 ## [0.3.0] - 2025-06-03
 [0.3.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.2.0...0.3.0
 

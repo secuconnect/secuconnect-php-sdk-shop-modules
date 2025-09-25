@@ -271,7 +271,7 @@ class PaymentContainersDTO implements ArrayAccess
 
     /**
      * Sets request_token
-     * @param bool $request_token Request Token
+     * @param bool $request_token Request token
      * @return $this
      */
     public function setRequestToken($request_token)

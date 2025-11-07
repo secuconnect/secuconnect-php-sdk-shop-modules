@@ -18,6 +18,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.5.0] - 2025-11-07
+[0.5.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.4.0...0.5.0
+
+- *changed element pattern*: `purpose` changed from `*` to `regex` in `SecupayPayoutDTO`
+- *changed element pattern*: `purpose` changed from `*` to `regex` in `SecupayPayoutWithoutCustomerDTO`
+- *changed element*: Response changed from `LoyaltyMerchantcardsProductModel` to `CreateLoyaltyMerchantcardsProductModel` in `LoyaltyMerchantcardsApi->createMerchantcards()`
+- *new element*: `csc` in `CreateLoyaltyMerchantcardsProductModel`
+- *new element*: `dynamic_descriptor`, in `PaymentContext`
+- *new element*: `container_instructions`, in `PaymentContext`
+- *new element*: `mit_instructions`, in `PaymentContext`
+
+### Added
+- `Model.ContainerInstructions`
+- `Model.DynamicDescriptor`
+- `Model.MITInstructions`
+
+### Changed
+- `Model.PaymentContext`
+
+
 ## [0.4.0] - 2025-09-25
 [0.4.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.3.0...0.4.0
 

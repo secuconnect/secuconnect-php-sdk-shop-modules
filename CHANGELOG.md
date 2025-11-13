@@ -18,6 +18,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.6.0] - 2025-11-13
+[0.6.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.5.0...0.6.0
+
+- *rename element*: from `standing_instructions` to `standing_instruction` in `MITInstructions`
+
+### Changed
+- `Model.MITInstructions`
+
+
 ## [0.5.0] - 2025-11-07
 [0.5.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.4.0...0.5.0
 

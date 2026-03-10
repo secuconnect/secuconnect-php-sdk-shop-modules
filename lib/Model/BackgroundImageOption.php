@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class BackgroundImageOption implements ArrayAccess
+class BackgroundImageOption implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -114,9 +114,9 @@ class BackgroundImageOption implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['enabled'] = isset($data['enabled']) ? $data['enabled'] : null;
         $this->container['image_url'] = isset($data['image_url']) ? $data['image_url'] : null;

@@ -28,7 +28,7 @@ class SmartTransactionsApi
      *
      * @param ApiClient|null $apiClient The api client to use
      */
-    public function __construct(ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();
@@ -65,18 +65,18 @@ class SmartTransactionsApi
      *
      * Find Smart Transactions
      *
-     * @param int $count The maximum number of items to return 
-     * @param int $offset The position within the whole result set to start returning items (zero-based) 
-     * @param string $fields List of fields to include in the result, all others will be filtered out. Nested properties can be accessed with this notation: &#x60;prop1.prop2&#x60;. 
-     * @param string $q A query string to restrict the returned items to given conditions. The query string must consist of any combination of single expressions in the form &#x60;property:condition&#x60;. Property names can be nested like &#x60;property.property&#x60;.  Example: &#x60;customer.name:Meier&#x60;  A condition may contain:  * &#x60;?&#x60; as wildcard for one character;  * &#x60;*&#x60; as wildcard for any number of characters.  You can also use value ranges in the form &#x60;[min TO max]&#x60;.  Example: &#x60;customer.age:[30 TO 40]&#x60;  You can combine expressions logically by &#x60;expr AND expr&#x60; and &#x60;{expr} OR {expr}&#x60;. You can also negate an expression using &#x60;NOT {expr}&#x60;. Parenthesis &#x60;(...)&#x60; can be used to control precedence.  Example: &#x60;(NOT customer.name:meier*) AND (customer.age:[30 TO 40] OR customer.age:[50 TO 60])&#x60; 
-     * @param string $sort String with comma separated pairs of &#x60;field:order&#x60;.  Options for order:  * &#x60;asc&#x60; ascending;  * &#x60;desc&#x60; descending. 
-     * @param \Secuconnect\Client\Model\Aggregate $aggregate Aggregation summarizes your data. 
-     * @param string $meta return field definitions 
-     * @param float $validate Check syntax of a query string 
-     * @param string $scroll_expire How long it should keep the “search context” alive? 
-     * @param string $scroll_id Identifier of a previous search context. 
-     * @param string $preset Query presets 
-     * @param string $expand Expand fields (all or a specific one) 
+     * @param int $count The maximum number of items to return
+     * @param int $offset The position within the whole result set to start returning items (zero-based)
+     * @param string $fields List of fields to include in the result, all others will be filtered out. Nested properties can be accessed with this notation: &#x60;prop1.prop2&#x60;.
+     * @param string $q A query string to restrict the returned items to given conditions. The query string must consist of any combination of single expressions in the form &#x60;property:condition&#x60;. Property names can be nested like &#x60;property.property&#x60;.  Example: &#x60;customer.name:Meier&#x60;  A condition may contain:  * &#x60;?&#x60; as wildcard for one character;  * &#x60;*&#x60; as wildcard for any number of characters.  You can also use value ranges in the form &#x60;[min TO max]&#x60;.  Example: &#x60;customer.age:[30 TO 40]&#x60;  You can combine expressions logically by &#x60;expr AND expr&#x60; and &#x60;{expr} OR {expr}&#x60;. You can also negate an expression using &#x60;NOT {expr}&#x60;. Parenthesis &#x60;(...)&#x60; can be used to control precedence.  Example: &#x60;(NOT customer.name:meier*) AND (customer.age:[30 TO 40] OR customer.age:[50 TO 60])&#x60;
+     * @param string $sort String with comma separated pairs of &#x60;field:order&#x60;.  Options for order:  * &#x60;asc&#x60; ascending;  * &#x60;desc&#x60; descending.
+     * @param \Secuconnect\Client\Model\Aggregate $aggregate Aggregation summarizes your data.
+     * @param string $meta return field definitions
+     * @param float $validate Check syntax of a query string
+     * @param string $scroll_expire How long it should keep the “search context” alive?
+     * @param string $scroll_id Identifier of a previous search context.
+     * @param string $preset Query presets
+     * @param string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\SmartTransactionsList
      */
@@ -91,18 +91,18 @@ class SmartTransactionsApi
      *
      * Find Smart Transactions
      *
-     * @param null|int $count The maximum number of items to return 
-     * @param null|int $offset The position within the whole result set to start returning items (zero-based) 
-     * @param null|string $fields List of fields to include in the result, all others will be filtered out. Nested properties can be accessed with this notation: &#x60;prop1.prop2&#x60;. 
-     * @param null|string $q A query string to restrict the returned items to given conditions. The query string must consist of any combination of single expressions in the form &#x60;property:condition&#x60;. Property names can be nested like &#x60;property.property&#x60;.  Example: &#x60;customer.name:Meier&#x60;  A condition may contain:  * &#x60;?&#x60; as wildcard for one character;  * &#x60;*&#x60; as wildcard for any number of characters.  You can also use value ranges in the form &#x60;[min TO max]&#x60;.  Example: &#x60;customer.age:[30 TO 40]&#x60;  You can combine expressions logically by &#x60;expr AND expr&#x60; and &#x60;{expr} OR {expr}&#x60;. You can also negate an expression using &#x60;NOT {expr}&#x60;. Parenthesis &#x60;(...)&#x60; can be used to control precedence.  Example: &#x60;(NOT customer.name:meier*) AND (customer.age:[30 TO 40] OR customer.age:[50 TO 60])&#x60; 
-     * @param null|string $sort String with comma separated pairs of &#x60;field:order&#x60;.  Options for order:  * &#x60;asc&#x60; ascending;  * &#x60;desc&#x60; descending. 
-     * @param null|\Secuconnect\Client\Model\Aggregate $aggregate Aggregation summarizes your data. 
-     * @param null|string $meta return field definitions 
-     * @param null|float $validate Check syntax of a query string 
-     * @param null|string $scroll_expire How long it should keep the “search context” alive? 
-     * @param null|string $scroll_id Identifier of a previous search context. 
-     * @param null|string $preset Query presets 
-     * @param null|string $expand Expand fields (all or a specific one) 
+     * @param null|int $count The maximum number of items to return
+     * @param null|int $offset The position within the whole result set to start returning items (zero-based)
+     * @param null|string $fields List of fields to include in the result, all others will be filtered out. Nested properties can be accessed with this notation: &#x60;prop1.prop2&#x60;.
+     * @param null|string $q A query string to restrict the returned items to given conditions. The query string must consist of any combination of single expressions in the form &#x60;property:condition&#x60;. Property names can be nested like &#x60;property.property&#x60;.  Example: &#x60;customer.name:Meier&#x60;  A condition may contain:  * &#x60;?&#x60; as wildcard for one character;  * &#x60;*&#x60; as wildcard for any number of characters.  You can also use value ranges in the form &#x60;[min TO max]&#x60;.  Example: &#x60;customer.age:[30 TO 40]&#x60;  You can combine expressions logically by &#x60;expr AND expr&#x60; and &#x60;{expr} OR {expr}&#x60;. You can also negate an expression using &#x60;NOT {expr}&#x60;. Parenthesis &#x60;(...)&#x60; can be used to control precedence.  Example: &#x60;(NOT customer.name:meier*) AND (customer.age:[30 TO 40] OR customer.age:[50 TO 60])&#x60;
+     * @param null|string $sort String with comma separated pairs of &#x60;field:order&#x60;.  Options for order:  * &#x60;asc&#x60; ascending;  * &#x60;desc&#x60; descending.
+     * @param null|\Secuconnect\Client\Model\Aggregate $aggregate Aggregation summarizes your data.
+     * @param null|string $meta return field definitions
+     * @param null|float $validate Check syntax of a query string
+     * @param null|string $scroll_expire How long it should keep the “search context” alive?
+     * @param null|string $scroll_id Identifier of a previous search context.
+     * @param null|string $preset Query presets
+     * @param null|string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\SmartTransactionsList, HTTP status code, HTTP response headers (array of strings)
      */
@@ -216,7 +216,7 @@ class SmartTransactionsApi
      * Read Smart Transaction
      *
      * @param string $smart_transaction_id Smart Transaction ID (required)
-     * @param string $expand Expand fields (all or a specific one) 
+     * @param string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\SmartTransactionsProductModel
      */
@@ -232,7 +232,7 @@ class SmartTransactionsApi
      * Read Smart Transaction
      *
      * @param null|string $smart_transaction_id Smart Transaction ID (required)
-     * @param null|string $expand Expand fields (all or a specific one) 
+     * @param null|string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\SmartTransactionsProductModel, HTTP status code, HTTP response headers (array of strings)
      */
@@ -310,7 +310,7 @@ class SmartTransactionsApi
      *
      * @param string $smart_transaction_id Smart Transaction ID (required)
      * @param string $payment_method Payment method:  - &#x60;\&quot;creditcard\&quot;&#x60; (also for Google Pay and Apple Pay) - &#x60;\&quot;debit\&quot;&#x60; - &#x60;\&quot;eps\&quot;&#x60; (deprecated) - &#x60;\&quot;easycredit\&quot;&#x60; - &#x60;\&quot;giropay\&quot;&#x60; (deprecated) - &#x60;\&quot;invoice\&quot;&#x60; - &#x60;\&quot;paypal\&quot;&#x60; - &#x60;\&quot;prepaid\&quot;&#x60; - &#x60;\&quot;sofort\&quot;&#x60; (deprecated) (required)
-     * @param \Secuconnect\Client\Model\SmartTransactionsPrepare $body Optional customer and/or payment details 
+     * @param \Secuconnect\Client\Model\SmartTransactionsPrepare $body Optional customer and/or payment details
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\SmartTransactionsProductModel
      */
@@ -327,7 +327,7 @@ class SmartTransactionsApi
      *
      * @param null|string $smart_transaction_id Smart Transaction ID (required)
      * @param null|string $payment_method Payment method:  - &#x60;\&quot;creditcard\&quot;&#x60; (also for Google Pay and Apple Pay) - &#x60;\&quot;debit\&quot;&#x60; - &#x60;\&quot;eps\&quot;&#x60; (deprecated) - &#x60;\&quot;easycredit\&quot;&#x60; - &#x60;\&quot;giropay\&quot;&#x60; (deprecated) - &#x60;\&quot;invoice\&quot;&#x60; - &#x60;\&quot;paypal\&quot;&#x60; - &#x60;\&quot;prepaid\&quot;&#x60; - &#x60;\&quot;sofort\&quot;&#x60; (deprecated) (required)
-     * @param null|\Secuconnect\Client\Model\SmartTransactionsPrepare $body Optional customer and/or payment details 
+     * @param null|\Secuconnect\Client\Model\SmartTransactionsPrepare $body Optional customer and/or payment details
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\SmartTransactionsProductModel, HTTP status code, HTTP response headers (array of strings)
      */
@@ -407,7 +407,7 @@ class SmartTransactionsApi
      * Update Smart Transaction
      *
      * @param string $smart_transaction_id Smart Transaction ID (required)
-     * @param \Secuconnect\Client\Model\SmartTransactionsDTO $body Transaction details 
+     * @param \Secuconnect\Client\Model\SmartTransactionsDTO $body Transaction details
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\SmartTransactionsProductModel
      */
@@ -423,7 +423,7 @@ class SmartTransactionsApi
      * Update Smart Transaction
      *
      * @param null|string $smart_transaction_id Smart Transaction ID (required)
-     * @param null|\Secuconnect\Client\Model\SmartTransactionsDTO $body Transaction details 
+     * @param null|\Secuconnect\Client\Model\SmartTransactionsDTO $body Transaction details
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\SmartTransactionsProductModel, HTTP status code, HTTP response headers (array of strings)
      */

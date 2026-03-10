@@ -151,7 +151,7 @@ class Authenticator
         if (self::$credentials) {
             try {
                 $key = self::ACCESS_TOKEN . self::$credentials->getUniqueKey();
-                if (self::$cache->getItem($key)->isHit()) {
+                if (self::$cache?->getItem($key)?->isHit()) {
                     self::$cache->deleteItem($key);
                 }
 
@@ -231,7 +231,7 @@ class Authenticator
             self::ACCESS_TOKEN . $authId
         );
 
-        if (!$cacheItem->isHit()) {
+        if (!$cacheItem?->isHit()) {
             return null;
         }
 
@@ -257,7 +257,7 @@ class Authenticator
                 self::REFRESH_TOKEN . $authId
             );
 
-            if (!$cacheItem->isHit()) {
+            if (!$cacheItem?->isHit()) {
                 return null;
             }
 
@@ -319,7 +319,7 @@ class Authenticator
     {
         $credentials = $authenticationCredentials->getCredentials();
 
-        $response = self::$apiClient->callApi(
+        $response = self::$apiClient?->callApi(
             'oauth/token',
             ApiClient::$POST,
             [],
@@ -348,7 +348,9 @@ class Authenticator
                 self::ACCESS_TOKEN . $authId
             );
 
-            self::saveTokenToCache($cacheItem, (string)$newToken->access_token, (int)$newToken->expires_in);
+            if ($cacheItem) {
+                self::saveTokenToCache($cacheItem, (string)$newToken->access_token, (int)($newToken->expires_in ?? 0));
+            }
         }
 
         if (!empty($newToken->refresh_token)) {
@@ -356,7 +358,9 @@ class Authenticator
                 self::REFRESH_TOKEN . $authId
             );
 
-            self::saveTokenToCache($cacheItem, (string)$newToken->refresh_token, self::REFRESH_TOKEN_EXPIRE_TIME);
+            if ($cacheItem) {
+                self::saveTokenToCache($cacheItem, (string)$newToken->refresh_token, self::REFRESH_TOKEN_EXPIRE_TIME);
+            }
         }
     }
 
@@ -376,10 +380,10 @@ class Authenticator
             ->getPrinter()
             ->printUserCode($token);
 
-        $expiresIn = (int)$token->expires_in;
-        $interval = (int)$token->interval;
+        $expiresIn = (int)($token->expires_in ?? 0);
+        $interval = (int)($token->interval ?? 0);
 
-        $codeCredentials = OAuthDeviceCredentials::from($clientId, $clientSecret, $token->device_code);
+        $codeCredentials = OAuthDeviceCredentials::from($clientId, $clientSecret, $token->device_code ?? '');
 
         while ($expiresIn > 0) {
             try {
@@ -413,7 +417,7 @@ class Authenticator
         $cacheItem->set($token);
         $expiresIn -= self::EXPECTED_LENGTH_OF_REQUEST;
         $cacheItem->expiresAfter($expiresIn);
-        self::$cache->save($cacheItem);
+        self::$cache?->save($cacheItem);
     }
 
     /**
@@ -425,7 +429,7 @@ class Authenticator
     private static function getCacheItem($key)
     {
         try {
-            return self::$cache->getItem($key);
+            return self::$cache?->getItem($key);
         } catch (InvalidArgumentException $e) {
             return null;
         }

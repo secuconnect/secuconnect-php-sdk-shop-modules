@@ -28,7 +28,7 @@ class GeneralContractsApi
      *
      * @param ApiClient|null $apiClient The api client to use
      */
-    public function __construct(ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();
@@ -66,7 +66,7 @@ class GeneralContractsApi
      * Get payment methods
      *
      * @param string $general_contract_id General Contract ID (required)
-     * @param \Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details 
+     * @param \Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details
      * @throws ApiException on non-2xx response
      * @return string[]
      */
@@ -82,7 +82,7 @@ class GeneralContractsApi
      * Get payment methods
      *
      * @param null|string $general_contract_id General Contract ID (required)
-     * @param null|\Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details 
+     * @param null|\Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of string[], HTTP status code, HTTP response headers (array of strings)
      */
@@ -156,7 +156,7 @@ class GeneralContractsApi
      *
      * @param string $general_contract_id General Contract ID (required)
      * @param string $smart_transaction_id Smart Transaction ID (required)
-     * @param \Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details 
+     * @param \Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details
      * @throws ApiException on non-2xx response
      * @return string[]
      */
@@ -173,7 +173,7 @@ class GeneralContractsApi
      *
      * @param null|string $general_contract_id General Contract ID (required)
      * @param null|string $smart_transaction_id Smart Transaction ID (required)
-     * @param null|\Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details 
+     * @param null|\Secuconnect\Client\Model\GetAvailablePaymentMethodsDTO $body Request details
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of string[], HTTP status code, HTTP response headers (array of strings)
      */
@@ -340,7 +340,7 @@ class GeneralContractsApi
      * Read General Contract
      *
      * @param string $general_contract_id General Contract ID (required)
-     * @param string $expand Expand fields (all or a specific one) 
+     * @param string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\GeneralContractsProductModel
      */
@@ -356,7 +356,7 @@ class GeneralContractsApi
      * Read General Contract
      *
      * @param null|string $general_contract_id General Contract ID (required)
-     * @param null|string $expand Expand fields (all or a specific one) 
+     * @param null|string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\GeneralContractsProductModel, HTTP status code, HTTP response headers (array of strings)
      */

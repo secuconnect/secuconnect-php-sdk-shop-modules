@@ -28,7 +28,7 @@ class PaymentContainersApi
      *
      * @param ApiClient|null $apiClient The api client to use
      */
-    public function __construct(ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();
@@ -66,7 +66,7 @@ class PaymentContainersApi
      * Read Payment Containers
      *
      * @param string $payment_container_id Payment Container ID (required)
-     * @param string $expand Expand fields (all or a specific one) 
+     * @param string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\PaymentContainersProductModel
      */
@@ -82,7 +82,7 @@ class PaymentContainersApi
      * Read Payment Containers
      *
      * @param null|string $payment_container_id Payment Container ID (required)
-     * @param null|string $expand Expand fields (all or a specific one) 
+     * @param null|string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\PaymentContainersProductModel, HTTP status code, HTTP response headers (array of strings)
      */

@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class GooglePayDescriptor implements ArrayAccess, OneOfPaymentContainersDTOModelPrivate
+class GooglePayDescriptor implements ModelInterface, ArrayAccess, OneOfPaymentContainersDTOModelPrivate
 {
     const DISCRIMINATOR = null;
 
@@ -124,9 +124,9 @@ class GooglePayDescriptor implements ArrayAccess, OneOfPaymentContainersDTOModel
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['signature'] = isset($data['signature']) ? $data['signature'] : null;
         $this->container['intermediate_signing_key'] = isset($data['intermediate_signing_key']) ? $data['intermediate_signing_key'] : null;

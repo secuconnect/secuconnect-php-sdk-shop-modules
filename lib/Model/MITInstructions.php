@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class MITInstructions implements ArrayAccess
+class MITInstructions implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -129,9 +129,9 @@ class MITInstructions implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['standing_instruction'] = isset($data['standing_instruction']) ? $data['standing_instruction'] : null;

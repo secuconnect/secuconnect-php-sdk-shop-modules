@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class SmartTransactionsBasketInfo implements ArrayAccess
+class SmartTransactionsBasketInfo implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -119,9 +119,9 @@ class SmartTransactionsBasketInfo implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['sum'] = isset($data['sum']) ? $data['sum'] : null;
         $this->container['gratuity'] = isset($data['gratuity']) ? $data['gratuity'] : null;

@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class SecupayRedirectUrl implements ArrayAccess
+class SecupayRedirectUrl implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -124,9 +124,9 @@ class SecupayRedirectUrl implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['iframe_url'] = isset($data['iframe_url']) ? $data['iframe_url'] : null;
         $this->container['url_success'] = isset($data['url_success']) ? $data['url_success'] : null;

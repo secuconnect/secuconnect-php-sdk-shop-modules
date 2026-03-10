@@ -44,9 +44,9 @@ class ApiClient
     /**
      * Constructor of the class
      *
-     * @param Configuration $config config for this ApiClient
+     * @param Configuration|null $config config for this ApiClient
      */
-    public function __construct(Configuration $config = null)
+    public function __construct(?Configuration $config = null)
     {
         if ($config === null) {
             $config = Configuration::getDefaultConfiguration();
@@ -112,6 +112,9 @@ class ApiClient
         }
 
         $url = $this->config->getHost() . $resourcePath;
+        if ('' === $url) {
+            throw new ApiException('URL can not be empty.');
+        }
 
         $curl = curl_init();
         // set timeout, if needed
@@ -181,7 +184,9 @@ class ApiClient
         curl_setopt($curl, CURLOPT_URL, $url);
 
         // Set user agent
-        curl_setopt($curl, CURLOPT_USERAGENT, $this->config->getUserAgent());
+        if ('' !== $this->config->getUserAgent()) {
+            curl_setopt($curl, CURLOPT_USERAGENT, $this->config->getUserAgent());
+        }
 
         // debugging for curl
         if ($this->config->getDebug()) {
@@ -189,7 +194,11 @@ class ApiClient
 
             curl_setopt($curl, CURLOPT_VERBOSE, true);
             if (is_file($this->config->getDebugFile())) {
-                curl_setopt($curl, CURLOPT_STDERR, fopen($this->config->getDebugFile(), 'a'));
+                $handler = fopen($this->config->getDebugFile(), 'a');
+                if (!$handler) {
+                    throw new ApiException('Could not open debug file: ' . $this->config->getDebugFile());
+                }
+                curl_setopt($curl, CURLOPT_STDERR, $handler);
             }
         } else {
             curl_setopt($curl, CURLOPT_VERBOSE, false);
@@ -199,7 +208,7 @@ class ApiClient
         curl_setopt($curl, CURLOPT_HEADER, true);
 
         // Make the request
-        $response = curl_exec($curl);
+        $response = (string)curl_exec($curl);
         $http_header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $http_header = $this->httpParseHeaders(substr($response, 0, $http_header_size));
         $http_body = substr($response, $http_header_size);

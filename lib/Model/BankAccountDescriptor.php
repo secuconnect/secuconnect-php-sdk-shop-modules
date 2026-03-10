@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class BankAccountDescriptor implements ArrayAccess, OneOfPaymentContainersDTOModelPrivate
+class BankAccountDescriptor implements ModelInterface, ArrayAccess, OneOfPaymentContainersDTOModelPrivate
 {
     const DISCRIMINATOR = null;
 
@@ -129,9 +129,9 @@ class BankAccountDescriptor implements ArrayAccess, OneOfPaymentContainersDTOMod
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['iban'] = isset($data['iban']) ? $data['iban'] : null;
         $this->container['bic'] = isset($data['bic']) ? $data['bic'] : null;

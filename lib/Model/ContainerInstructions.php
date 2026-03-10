@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class ContainerInstructions implements ArrayAccess
+class ContainerInstructions implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -114,9 +114,9 @@ class ContainerInstructions implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['request_token'] = isset($data['request_token']) ? $data['request_token'] : null;
         $this->container['notification_url'] = isset($data['notification_url']) ? $data['notification_url'] : null;

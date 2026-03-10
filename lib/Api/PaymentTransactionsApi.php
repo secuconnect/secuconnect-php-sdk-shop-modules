@@ -28,7 +28,7 @@ class PaymentTransactionsApi
      *
      * @param ApiClient|null $apiClient The api client to use
      */
-    public function __construct(ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();
@@ -66,7 +66,7 @@ class PaymentTransactionsApi
      * Cancel or refund
      *
      * @param string $payment_transaction_id Payment Transaction ID (required)
-     * @param \Secuconnect\Client\Model\PaymentTransactionCancelDTO $body Amount and reason 
+     * @param \Secuconnect\Client\Model\PaymentTransactionCancelDTO $body Amount and reason
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\PaymentTransactionsProductModel[]
      */
@@ -82,7 +82,7 @@ class PaymentTransactionsApi
      * Cancel or refund
      *
      * @param null|string $payment_transaction_id Payment Transaction ID (required)
-     * @param null|\Secuconnect\Client\Model\PaymentTransactionCancelDTO $body Amount and reason 
+     * @param null|\Secuconnect\Client\Model\PaymentTransactionCancelDTO $body Amount and reason
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\PaymentTransactionsProductModel[], HTTP status code, HTTP response headers (array of strings)
      */
@@ -155,7 +155,7 @@ class PaymentTransactionsApi
      * Capture
      *
      * @param string $payment_transaction_id Payment Transaction ID (required)
-     * @param \Secuconnect\Client\Model\PaymentTransactionsCaptureDTO $body body 
+     * @param \Secuconnect\Client\Model\PaymentTransactionsCaptureDTO $body body
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\PaymentTransactionsProductModel
      */
@@ -171,7 +171,7 @@ class PaymentTransactionsApi
      * Capture
      *
      * @param null|string $payment_transaction_id Payment Transaction ID (required)
-     * @param null|\Secuconnect\Client\Model\PaymentTransactionsCaptureDTO $body 
+     * @param null|\Secuconnect\Client\Model\PaymentTransactionsCaptureDTO $body
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\PaymentTransactionsProductModel, HTTP status code, HTTP response headers (array of strings)
      */
@@ -331,7 +331,7 @@ class PaymentTransactionsApi
      * Read Payment Transaction
      *
      * @param string $payment_transaction_id Payment Transaction ID (required)
-     * @param string $expand Expand fields (all or a specific one) 
+     * @param string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\PaymentTransactionsProductModel
      */
@@ -347,7 +347,7 @@ class PaymentTransactionsApi
      * Read Payment Transaction
      *
      * @param null|string $payment_transaction_id Payment Transaction ID (required)
-     * @param null|string $expand Expand fields (all or a specific one) 
+     * @param null|string $expand Expand fields (all or a specific one)
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\PaymentTransactionsProductModel, HTTP status code, HTTP response headers (array of strings)
      */
@@ -598,7 +598,7 @@ class PaymentTransactionsApi
      * Add shipping information
      *
      * @param string $payment_transaction_id Payment Transaction ID (PCI_...) or Flex.API transaction hash (required)
-     * @param \Secuconnect\Client\Model\SecupayTransactionSetShippingInformationDTO $body Shipping information 
+     * @param \Secuconnect\Client\Model\SecupayTransactionSetShippingInformationDTO $body Shipping information
      * @throws ApiException on non-2xx response
      * @return \Secuconnect\Client\Model\ResultBoolean
      */
@@ -614,7 +614,7 @@ class PaymentTransactionsApi
      * Add shipping information
      *
      * @param null|string $payment_transaction_id Payment Transaction ID (PCI_...) or Flex.API transaction hash (required)
-     * @param null|\Secuconnect\Client\Model\SecupayTransactionSetShippingInformationDTO $body Shipping information 
+     * @param null|\Secuconnect\Client\Model\SecupayTransactionSetShippingInformationDTO $body Shipping information
      * @throws ApiException on non-2xx response
      * @return array<int, mixed> of \Secuconnect\Client\Model\ResultBoolean, HTTP status code, HTTP response headers (array of strings)
      */

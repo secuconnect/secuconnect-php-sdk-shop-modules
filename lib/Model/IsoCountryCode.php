@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class IsoCountryCode implements ArrayAccess
+class IsoCountryCode implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 

@@ -46,7 +46,7 @@ class CacheItem implements CacheItemInterface
      */
     public function getKey(): string
     {
-        return $this->key;
+        return $this->key ?? '';
     }
 
     /**

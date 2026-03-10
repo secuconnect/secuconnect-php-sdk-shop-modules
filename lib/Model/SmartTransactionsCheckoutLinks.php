@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class SmartTransactionsCheckoutLinks implements ArrayAccess
+class SmartTransactionsCheckoutLinks implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -109,9 +109,9 @@ class SmartTransactionsCheckoutLinks implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['url_checkout'] = isset($data['url_checkout']) ? $data['url_checkout'] : null;
     }

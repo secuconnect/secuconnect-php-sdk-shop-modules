@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class ApplePayDescriptor implements ArrayAccess, OneOfPaymentContainersDTOModelPrivate
+class ApplePayDescriptor implements ModelInterface, ArrayAccess, OneOfPaymentContainersDTOModelPrivate
 {
     const DISCRIMINATOR = null;
 
@@ -124,9 +124,9 @@ class ApplePayDescriptor implements ArrayAccess, OneOfPaymentContainersDTOModelP
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['signature'] = isset($data['signature']) ? $data['signature'] : null;
         $this->container['version'] = isset($data['version']) ? $data['version'] : 'EC_v1';

@@ -18,6 +18,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.8.0] - 2026-03-10
+[0.8.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.7.0...0.8.0
+
+- *new element*: `GeneralContractsProductModel->event_details`
+- Update phpunit versions to solve vulnerability warning
+- FIX missing path params replacement
+
+### Added
+- `Model.GeneralContractsEventDetails`
+
+### Changed
+- `Api.GeneralContractsApi`
+- `Api.PaymentContainersApi`
+- `Api.PaymentTransactionsApi`
+- `Api.SmartTransactionsApi`
+- `Model.ContainerInstructions`
+- `Model.DynamicDescriptor`
+- `Model.GeneralContractsProductModel`
+- `Model.MITInstructions`
+- `Model.PaymentContainerTokenStatus`
+- `Model.PaymentContext`
+- `Model.SmartTransactionsDTO`
+- `Model.SmartTransactionsPrepareDynamicDescriptor`
+- `Model.SmartTransactionsProductModel`
+
+
 ## [0.7.0] - 2026-03-10
 [0.7.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.6.0...0.7.0
 

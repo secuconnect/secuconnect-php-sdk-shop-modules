@@ -169,7 +169,7 @@ class PaymentContainerTokenStatus implements ModelInterface, ArrayAccess
 
     /**
      * Sets status
-     * @param string $status Status of the Token
+     * @param string $status Network token status:  - `\"not requested\"` - `\"requested\"` - `\"inquiry\"` - `\"active\"` - `\"failed\"` - `\"archivePending\"` - `\"archived\"`
      * @return $this
      */
     public function setStatus($status)

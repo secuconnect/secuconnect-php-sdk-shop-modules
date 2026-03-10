@@ -106,6 +106,11 @@ class PaymentTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -195,6 +200,11 @@ class PaymentTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -282,6 +292,11 @@ class PaymentTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -375,6 +390,11 @@ class PaymentTransactionsApi
             $queryParams['expand'] = $this->apiClient->getSerializer()->toQueryValue($expand);
         }
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -462,6 +482,11 @@ class PaymentTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -549,6 +574,11 @@ class PaymentTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -638,6 +668,11 @@ class PaymentTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 

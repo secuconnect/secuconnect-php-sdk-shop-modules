@@ -7,7 +7,7 @@ use \ArrayAccess;
 /**
  * PaymentContext
  *
- * @description Controls some payment details
+ * @description Controls payment details
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */

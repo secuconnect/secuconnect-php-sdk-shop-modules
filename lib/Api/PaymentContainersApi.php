@@ -110,6 +110,11 @@ class PaymentContainersApi
             $queryParams['expand'] = $this->apiClient->getSerializer()->toQueryValue($expand);
         }
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentContainerId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_container_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 

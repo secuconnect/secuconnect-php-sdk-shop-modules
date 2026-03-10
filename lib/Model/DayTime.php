@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class DayTime implements ArrayAccess
+class DayTime implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -114,9 +114,9 @@ class DayTime implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['day'] = isset($data['day']) ? $data['day'] : null;
         $this->container['time'] = isset($data['time']) ? $data['time'] : null;

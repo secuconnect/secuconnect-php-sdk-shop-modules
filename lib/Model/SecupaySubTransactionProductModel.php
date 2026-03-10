@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class SecupaySubTransactionProductModel implements ArrayAccess
+class SecupaySubTransactionProductModel implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -119,9 +119,9 @@ class SecupaySubTransactionProductModel implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['trans_id'] = isset($data['trans_id']) ? $data['trans_id'] : null;

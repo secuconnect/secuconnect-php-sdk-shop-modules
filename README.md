@@ -6,12 +6,12 @@
 For more information please visit: [https://developer.secuconnect.com/](https://developer.secuconnect.com)
 
 - API version: 2.0.0
-- SDK version: 0.6.0
+- SDK version: 0.7.0
 
 
 ## Requirements
 
-PHP 8.0 and later
+PHP 8.2.0 and later
 
 
 ## Installation & Usage
@@ -23,7 +23,7 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
 ```
 {
   "require": {
-    "secuconnect/secuconnect-php-sdk-shop-modules": "~0.6.0",
+    "secuconnect/secuconnect-php-sdk-shop-modules": "~0.7.0",
   }
 }
 ```

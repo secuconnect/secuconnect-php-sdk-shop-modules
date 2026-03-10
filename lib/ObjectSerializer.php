@@ -6,6 +6,7 @@ use Secuconnect\Client\Model\ApplePayDescriptor;
 use Secuconnect\Client\Model\BankAccountDescriptor;
 use Secuconnect\Client\Model\CreditCardDescriptor;
 use Secuconnect\Client\Model\GooglePayDescriptor;
+use Secuconnect\Client\Model\ModelInterface;
 use Secuconnect\Client\Model\OneOfPaymentContainersDTOModelPrivate;
 use Secuconnect\Client\Model\OneOfSmartTransactionsDeliveryOptionsModel;
 use Secuconnect\Client\Model\PaymentInstructions;
@@ -52,7 +53,7 @@ class ObjectSerializer
                 $data[$property] = self::sanitizeForSerialization($value);
             }
             return $data;
-        } elseif (is_object($data)) {
+        } elseif ($data instanceof ModelInterface) {
             $values = [];
             $formats = $data::swaggerFormats();
             foreach ($data::swaggerTypes() as $property => $swaggerType) {
@@ -192,7 +193,7 @@ class ObjectSerializer
         if ($allowCollectionFormatMulti && ('multi' === $collectionFormat)) {
             // http_build_query() almost does the job for us. We just
             // need to fix the result of multidimensional arrays.
-            return preg_replace('/%5B[0-9]+%5D=/', '=', http_build_query($collection, '', '&'));
+            return (string)preg_replace('/%5B[0-9]+%5D=/', '=', http_build_query($collection, '', '&'));
         }
         switch ($collectionFormat) {
             case 'pipes':
@@ -269,7 +270,7 @@ class ObjectSerializer
             return $data;
         } elseif ($class === '\SplFileObject') {
             // determine file name
-            if (array_key_exists('Content-Disposition', $httpHeaders) &&
+            if (null !== $httpHeaders && array_key_exists('Content-Disposition', $httpHeaders) &&
                 preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)) {
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
             } else {
@@ -277,6 +278,9 @@ class ObjectSerializer
             }
 
             $file = fopen($filename, 'w');
+            if (false === $file) {
+                throw new \RuntimeException("Could not write to temp file.");
+            }
             while ($chunk = $data->read(200)) {
                 fwrite($file, $chunk);
             }
@@ -353,10 +357,14 @@ class ObjectSerializer
             }
 
             $instance = new $class();
-            foreach ($instance::swaggerTypes() as $property => $type) {
-                $propertySetter = $instance::setters()[$property];
+            if (!$instance instanceof ModelInterface) {
+                throw new \RuntimeException("Wrong mapping for class '$class'.");
+            }
 
-                if (!isset($propertySetter) || !isset($data->{$instance::attributeMap()[$property]})) {
+            foreach ($instance::swaggerTypes() as $property => $type) {
+                $propertySetter = $instance::setters()[$property] ?? null;
+
+                if (null !== $propertySetter || !isset($data->{$instance::attributeMap()[$property]})) {
                     continue;
                 }
 

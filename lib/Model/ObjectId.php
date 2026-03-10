@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class ObjectId implements ArrayAccess
+class ObjectId implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 

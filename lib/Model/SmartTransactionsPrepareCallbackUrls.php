@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class SmartTransactionsPrepareCallbackUrls implements ArrayAccess
+class SmartTransactionsPrepareCallbackUrls implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -114,9 +114,9 @@ class SmartTransactionsPrepareCallbackUrls implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['success_url'] = isset($data['success_url']) ? $data['success_url'] : null;
         $this->container['failure_url'] = isset($data['failure_url']) ? $data['failure_url'] : null;

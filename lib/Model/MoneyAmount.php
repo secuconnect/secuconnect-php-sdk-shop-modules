@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class MoneyAmount implements ArrayAccess
+class MoneyAmount implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 

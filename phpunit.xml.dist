@@ -8,7 +8,7 @@
     <testsuites>
         <testsuite name="API Tests">
             <directory>./test/Api</directory>
-            <directory>./test/Model</directory>
+            <directory>./test/Cache</directory>
         </testsuite>
     </testsuites>
 

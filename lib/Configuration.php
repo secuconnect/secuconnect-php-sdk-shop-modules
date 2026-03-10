@@ -13,7 +13,7 @@ use Secuconnect\Client\Printer\Printer;
 class Configuration
 {
     const DEFAULT_HOST = 'connect-testing.secuconnect.com'; // For live use: connect.secucard.com
-    const SDK_VERSION = '0.6.0';
+    const SDK_VERSION = '0.7.0';
 
     const BASE_URL = 'https://' . self::DEFAULT_HOST . '/';
     const API_URL = self::BASE_URL . 'api/v2';
@@ -243,7 +243,7 @@ class Configuration
             throw new \InvalidArgumentException('Header name must be a string.');
         }
 
-        $this->defaultHeaders[$headerName] =  $headerValue;
+        $this->defaultHeaders[$headerName] = (string)$headerValue;
         return $this;
     }
 

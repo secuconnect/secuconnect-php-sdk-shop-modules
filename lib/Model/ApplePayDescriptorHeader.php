@@ -11,7 +11,7 @@ use \ArrayAccess;
  * @package  Secuconnect\Client
  * @implements ArrayAccess<string, mixed>
  */
-class ApplePayDescriptorHeader implements ArrayAccess
+class ApplePayDescriptorHeader implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -119,9 +119,9 @@ class ApplePayDescriptorHeader implements ArrayAccess
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property values initializing the model
+     * @param mixed[]|null $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['ephemeral_public_key'] = isset($data['ephemeral_public_key']) ? $data['ephemeral_public_key'] : null;
         $this->container['public_key_hash'] = isset($data['public_key_hash']) ? $data['public_key_hash'] : null;

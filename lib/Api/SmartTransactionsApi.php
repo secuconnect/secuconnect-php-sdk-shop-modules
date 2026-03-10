@@ -260,6 +260,11 @@ class SmartTransactionsApi
             $queryParams['expand'] = $this->apiClient->getSerializer()->toQueryValue($expand);
         }
         // path params
+        $resourcePath = str_replace(
+            "{" . "smartTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($smart_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -357,7 +362,17 @@ class SmartTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "smartTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($smart_transaction_id),
+            $resourcePath
+        );
         // path params
+        $resourcePath = str_replace(
+            "{" . "paymentMethod" . "}",
+            $this->apiClient->getSerializer()->toPathValue($payment_method),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 
@@ -447,6 +462,11 @@ class SmartTransactionsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // path params
+        $resourcePath = str_replace(
+            "{" . "smartTransactionId" . "}",
+            $this->apiClient->getSerializer()->toPathValue($smart_transaction_id),
+            $resourcePath
+        );
 
         for ($retries = 0; ; $retries++) {
 

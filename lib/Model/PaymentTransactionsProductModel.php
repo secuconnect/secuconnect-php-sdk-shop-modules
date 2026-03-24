@@ -68,7 +68,9 @@ class PaymentTransactionsProductModel extends BaseProductModel
         'accrual' => 'bool',
         'order_id' => 'string',
         'transmitted_to_bank' => 'bool',
-        'documents' => '\Secuconnect\Client\Model\PaymentTransactionsProductModelDocuments[]'
+        'documents' => '\Secuconnect\Client\Model\PaymentTransactionsProductModelDocuments[]',
+        'load_date' => 'string',
+        'basket' => '\Secuconnect\Client\Model\PaymentTransactionsProductModelBasket[]'
     ];
 
     /**
@@ -121,7 +123,9 @@ class PaymentTransactionsProductModel extends BaseProductModel
         'accrual' => null,
         'order_id' => null,
         'transmitted_to_bank' => null,
-        'documents' => null
+        'documents' => null,
+        'load_date' => null,
+        'basket' => null
     ];
 
     /**
@@ -190,7 +194,9 @@ class PaymentTransactionsProductModel extends BaseProductModel
         'accrual' => 'accrual',
         'order_id' => 'order_id',
         'transmitted_to_bank' => 'transmitted_to_bank',
-        'documents' => 'documents'
+        'documents' => 'documents',
+        'load_date' => 'load_date',
+        'basket' => 'basket'
     ];
 
     /**
@@ -243,7 +249,9 @@ class PaymentTransactionsProductModel extends BaseProductModel
         'accrual' => 'setAccrual',
         'order_id' => 'setOrderId',
         'transmitted_to_bank' => 'setTransmittedToBank',
-        'documents' => 'setDocuments'
+        'documents' => 'setDocuments',
+        'load_date' => 'setLoadDate',
+        'basket' => 'setBasket'
     ];
 
     /**
@@ -296,7 +304,9 @@ class PaymentTransactionsProductModel extends BaseProductModel
         'accrual' => 'getAccrual',
         'order_id' => 'getOrderId',
         'transmitted_to_bank' => 'getTransmittedToBank',
-        'documents' => 'getDocuments'
+        'documents' => 'getDocuments',
+        'load_date' => 'getLoadDate',
+        'basket' => 'getBasket'
     ];
 
     /**
@@ -377,6 +387,8 @@ class PaymentTransactionsProductModel extends BaseProductModel
         $this->container['order_id'] = isset($data['order_id']) ? $data['order_id'] : null;
         $this->container['transmitted_to_bank'] = isset($data['transmitted_to_bank']) ? $data['transmitted_to_bank'] : null;
         $this->container['documents'] = isset($data['documents']) ? $data['documents'] : null;
+        $this->container['load_date'] = isset($data['load_date']) ? $data['load_date'] : null;
+        $this->container['basket'] = isset($data['basket']) ? $data['basket'] : null;
     }
 
     /**
@@ -1365,6 +1377,48 @@ class PaymentTransactionsProductModel extends BaseProductModel
     public function setDocuments($documents)
     {
         $this->container['documents'] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Gets load_date
+     * @return string
+     */
+    public function getLoadDate()
+    {
+        return $this->container['load_date'];
+    }
+
+    /**
+     * Sets load_date
+     * @param string $load_date load_date
+     * @return $this
+     */
+    public function setLoadDate($load_date)
+    {
+        $this->container['load_date'] = $load_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets basket
+     * @return \Secuconnect\Client\Model\PaymentTransactionsProductModelBasket[]
+     */
+    public function getBasket()
+    {
+        return $this->container['basket'];
+    }
+
+    /**
+     * Sets basket
+     * @param \Secuconnect\Client\Model\PaymentTransactionsProductModelBasket[] $basket Products
+     * @return $this
+     */
+    public function setBasket($basket)
+    {
+        $this->container['basket'] = $basket;
 
         return $this;
     }

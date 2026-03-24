@@ -18,6 +18,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.9.0] - 2026-03-24
+[0.9.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.8.0...0.9.0
+
+- *new element*: `load_date` and `basket` in `PaymentTransactionsProductModel`
+- *fix bug*: Wrong mapping in `ObjectSerializer` and wrong extends in model classes
+
+### Added
+- `Model.PaymentTransactionsProductModelBasket`
+- `Model.PaymentTransactionsProductModelSubBasket`
+
+### Changed
+- `Model.PaymentTransactionsProductModel`
+- `lib/ObjectSerializer.php`
+
+
 ## [0.8.0] - 2026-03-10
 [0.8.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.7.0...0.8.0
 

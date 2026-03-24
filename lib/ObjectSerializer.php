@@ -364,7 +364,7 @@ class ObjectSerializer
             foreach ($instance::swaggerTypes() as $property => $type) {
                 $propertySetter = $instance::setters()[$property] ?? null;
 
-                if (null !== $propertySetter || !isset($data->{$instance::attributeMap()[$property]})) {
+                if (null === $propertySetter || !isset($data->{$instance::attributeMap()[$property]})) {
                     continue;
                 }
 

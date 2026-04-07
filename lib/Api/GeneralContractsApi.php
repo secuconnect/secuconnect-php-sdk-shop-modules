@@ -112,6 +112,9 @@ class GeneralContractsApi
             $resourcePath
         );
 
+        // body params
+        $httpBody = $body;
+
         for ($retries = 0; ; $retries++) {
 
             // this endpoint requires OAuth (access token)
@@ -219,6 +222,9 @@ class GeneralContractsApi
             $this->apiClient->getSerializer()->toPathValue($smart_transaction_id),
             $resourcePath
         );
+
+        // body params
+        $httpBody = $body;
 
         for ($retries = 0; ; $retries++) {
 

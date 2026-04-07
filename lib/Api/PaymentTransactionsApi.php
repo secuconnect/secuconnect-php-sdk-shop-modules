@@ -112,6 +112,9 @@ class PaymentTransactionsApi
             $resourcePath
         );
 
+        // body params
+        $httpBody = $body;
+
         for ($retries = 0; ; $retries++) {
 
             // this endpoint requires OAuth (access token)
@@ -205,6 +208,9 @@ class PaymentTransactionsApi
             $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
             $resourcePath
         );
+
+        // body params
+        $httpBody = $body;
 
         for ($retries = 0; ; $retries++) {
 
@@ -673,6 +679,9 @@ class PaymentTransactionsApi
             $this->apiClient->getSerializer()->toPathValue($payment_transaction_id),
             $resourcePath
         );
+
+        // body params
+        $httpBody = $body;
 
         for ($retries = 0; ; $retries++) {
 

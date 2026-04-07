@@ -18,6 +18,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.9.0] - 2026-04-07
+[0.9.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.8.0...0.9.0
+
+- *fix bug*: Missing body in POST and PUT requests
+- *new endpoint*: `addTransaction`in `SmartTransactionsApi`
+
+### Changed
+- `Api.GeneralContractsApi`
+- `Api.PaymentTransactionsApi`
+- `Api.SmartTransactionsApi`
+
+
 ## [0.9.0] - 2026-03-24
 [0.9.0]:https://github.com/secuconnect/secuconnect-php-sdk/compare/0.8.0...0.9.0
 
